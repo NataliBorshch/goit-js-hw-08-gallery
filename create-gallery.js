@@ -1,11 +1,11 @@
 import galleryImg from './gallery-items.js';
-console.log(galleryImg);
 
 
 const galleryList = document.querySelector('.js-gallery');
-console.log(galleryList);
 const lightboxRef = document.querySelector('.lightbox');
-console.log(lightboxRef);
+const lightboxImgRef = document.querySelector('.lightbox__image');
+const BtnCloseModal = document.querySelector('[data-action="close-lightbox"]');
+const overlayClose = document.querySelector('div.lightbox__overlay');
 
 const createGalleryItem = galleryImg.map(({preview,original,description}) => {
     return `<li class="gallery__item">
@@ -25,5 +25,29 @@ const createGalleryItem = galleryImg.map(({preview,original,description}) => {
 });
 galleryList.insertAdjacentHTML('afterbegin', createGalleryItem.join(''));
 
-console.log(createGalleryItem);
+const openModalImg = (event) => {
+    event.preventDefault();
+    lightboxRef.classList.add('is-open');
+    lightboxImgRef.src = event.target.dataset.source;
+};
+
+const closeModal = (event) => {
+    event.preventDefault();
+    lightboxRef.classList.remove('is-open');
+    lightboxImgRef.src = '';
+}
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && lightboxRef.classList.contains('is-open')) {
+        lightboxRef.classList.remove('is-open');
+        lightboxImgRef.src = '';
+    };
+});
+
+galleryList.addEventListener('click', openModalImg);
+BtnCloseModal.addEventListener('click', closeModal);
+overlayClose.addEventListener('click', closeModal);
+
+
+
  
