@@ -41,14 +41,15 @@ const closeModal = (event) => {
 document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && lightboxRef.classList.contains('is-open')) {
         lightboxRef.classList.remove('is-open');
-        lightboxImgRef.src = '';
+      lightboxImgRef.src = '';
+      
     };
 });
 
 document.addEventListener('keydown', event => {
     const indexImg = galleryImg.map(elem => elem.original).indexOf(lightboxImgRef.src)
      if (event.key === 'ArrowRight' && lightboxRef.classList.contains('is-open')){
-        if ( indexImg < (galleryImg.length - 1)){
+        if ( indexImg < (galleryImg.length -1)){
        return  lightboxImgRef.src = galleryImg[indexImg + 1].original;
        }
        if (indexImg === (galleryImg.length - 1)) {
@@ -56,7 +57,7 @@ document.addEventListener('keydown', event => {
         }
      } 
    if  (event.key === 'ArrowLeft' && lightboxRef.classList.contains('is-open')) {
-        if ( indexImg < galleryImg.length && indexImg!== 0 ){
+        if ( indexImg!== 0 ){
             lightboxImgRef.src = galleryImg[indexImg - 1].original;
      }
      if (indexImg === 0 )
