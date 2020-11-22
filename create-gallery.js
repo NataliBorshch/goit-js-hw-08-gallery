@@ -1,6 +1,5 @@
 import galleryImg from './gallery-items.js';
 
-
 const galleryList = document.querySelector('.js-gallery');
 const lightboxRef = document.querySelector('.lightbox');
 const lightboxImgRef = document.querySelector('.lightbox__image');
@@ -42,6 +41,30 @@ document.addEventListener('keydown', event => {
         lightboxRef.classList.remove('is-open');
         lightboxImgRef.src = '';
     };
+});
+
+document.addEventListener('keydown', event => {
+    const indexImg = galleryImg.map(elem => elem.original).indexOf(lightboxImgRef.src)
+     if (event.key === 'ArrowRight' && lightboxRef.classList.contains('is-open')){
+        if ( indexImg < (galleryImg.length - 1)){
+       return  lightboxImgRef.src = galleryImg[indexImg + 1].original;
+       }
+       if (indexImg === (galleryImg.length - 1)) {
+         return lightboxImgRef.src = galleryImg[0].original;
+        }
+     } 
+   if  (event.key === 'ArrowLeft' && lightboxRef.classList.contains('is-open')) {
+        if ( indexImg < galleryImg.length && indexImg!== 0 ){
+            lightboxImgRef.src = galleryImg[indexImg - 1].original;
+     }
+     if (indexImg === 0 )
+     {
+          lightboxImgRef.src = galleryImg[(galleryImg.length - 1)].original;
+        }
+    };
+    
+
+
 });
 
 galleryList.addEventListener('click', openModalImg);
