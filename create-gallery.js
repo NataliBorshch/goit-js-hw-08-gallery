@@ -25,13 +25,15 @@ const createGalleryItem = galleryImg.map(({preview,original,description}) => {
 galleryList.insertAdjacentHTML('afterbegin', createGalleryItem.join(''));
 
 const openModalImg = (event) => {
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
     event.preventDefault();
     lightboxRef.classList.add('is-open');
     lightboxImgRef.src = event.target.dataset.source;
 };
 
 const closeModal = (event) => {
-    event.preventDefault();
     lightboxRef.classList.remove('is-open');
     lightboxImgRef.src = '';
 }
