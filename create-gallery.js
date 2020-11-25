@@ -51,16 +51,16 @@ function nextImg() {
 }
 
 const eventKeyDown = (event) => {
-  let e = event.keyCode;
+  const keys = { Eskape: 27, ArrowRight: 39, ArrowLeft: 37 };
   if (lightboxRef.classList.contains("is-open")) {
-    switch (e) {
-      case 27:
+    switch (event.keyCode) {
+      case keys.Eskape:
         closeModal();
         break;
-      case 39:
+      case keys.ArrowRight:
         nextImg();
         break;
-      case 37:
+      case keys.ArrowLeft:
         prevImg();
         break;
       default:
