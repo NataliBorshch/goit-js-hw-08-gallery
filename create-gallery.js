@@ -39,6 +39,7 @@ const openModalImg = (event) => {
 const closeModal = (event) => {
   lightboxRef.classList.remove("is-open");
   lightboxImgRef.src = "";
+  document.removeEventListener("keydown", eventKeyDown);
 };
 
 function prevImg() {
@@ -51,16 +52,16 @@ function nextImg() {
 }
 
 const eventKeyDown = (event) => {
-  const keys = { Eskape: 27, ArrowRight: 39, ArrowLeft: 37 };
+  const keys = { ESCAPE_KEY: 27, ARROWRIGHT_KEY: 39, ARROWLEFT_KEY: 37 };
   if (lightboxRef.classList.contains("is-open")) {
     switch (event.keyCode) {
-      case keys.Eskape:
+      case keys.ESCAPE_KEY:
         closeModal();
         break;
-      case keys.ArrowRight:
+      case keys.ARROWRIGHT_KEY:
         nextImg();
         break;
-      case keys.ArrowLeft:
+      case keys.ARROWLEFT_KEY:
         prevImg();
         break;
       default:
