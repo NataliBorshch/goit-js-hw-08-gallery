@@ -34,6 +34,7 @@ const openModalImg = (event) => {
   lightboxRef.classList.add("is-open");
   lightboxImgRef.src = event.target.dataset.source;
   index = galleryImg.map((elem) => elem.original).indexOf(lightboxImgRef.src);
+  document.addEventListener("keydown", eventKeyDown);
 };
 
 const closeModal = (event) => {
@@ -73,4 +74,3 @@ const eventKeyDown = (event) => {
 galleryList.addEventListener("click", openModalImg);
 btnCloseModal.addEventListener("click", closeModal);
 overlayModal.addEventListener("click", closeModal);
-document.addEventListener("keydown", eventKeyDown);
